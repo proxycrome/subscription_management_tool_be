@@ -1,0 +1,37 @@
+{
+  "name": "subscription_management_tool_be",
+  "version": "1.0.0",
+  "description": "inter-track project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drewgeek/subscription_management_tool_be.git"
+  },
+  "type": "module",
+  "author": "Group 1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drewgeek/subscription_management_tool_be/issues"
+  },
+  "homepage": "https://github.com/drewgeek/subscription_management_tool_be#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server-core": "^7.4.3",
+    "mongoose": "^6.0.10"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.15.8",
+    "jest": "^27.2.5",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6"
+  }
+}
