@@ -80,7 +80,7 @@ const AuthController = {
             }
 
 
-            jwt.sign({id: isUser._id}, process.env.SECRET,{expiresIn: 86400}, (err, token) => {
+            jwt.sign({id: isUser._id}, process.env.JWT_SECRET,{expiresIn: 86400}, (err, token) => {
                     
                 if(err) {
                     throw err;
@@ -98,7 +98,7 @@ const AuthController = {
         }catch(error){
             res.status(500).json({status: "fail", message: "server err", error});
         }
-    }   
+    },
         
 };
 

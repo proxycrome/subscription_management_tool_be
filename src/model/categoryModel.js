@@ -9,19 +9,16 @@ const categorySchema = new Schema({
 		required: true
     },
     hasSubCategory: {
-        type: Boolean
+        type: Boolean,
+        required: true
     },
     subCategory: {
         type: String
     },
-    product: {
+    products: [{
         type: SchemaTypes.ObjectId,
         ref: 'product'
-    },
-    dateAdded: {
-        type: Date,
-        default: Date.now
-    }
+    }],
 
 }, {timestamps: true})
 

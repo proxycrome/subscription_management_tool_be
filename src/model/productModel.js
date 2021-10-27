@@ -12,16 +12,12 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    product_logo: {
+    productLogo: {
         type: String
-    },  
-    category: {
+    }, 
+    categoryId: {
         type: SchemaTypes.ObjectId,
         ref: 'category'
-    },
-    dateAdded: {
-        type: Date,
-        default: Date.now
     }
 })
 

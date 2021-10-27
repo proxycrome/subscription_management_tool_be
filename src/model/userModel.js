@@ -25,6 +25,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    phone: {
+        type: Number
+    },
+    photo: {
+        type: String
+    },
     access: {
         type: String,
         enum: ["admin", "user"],

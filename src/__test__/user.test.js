@@ -81,17 +81,17 @@ describe('POST /register', () => {
     
 });
 
-describe('POST /login', () => {
-    it('It should login a user',  async () => {
-        await request
-          .post('/login')
-          .send({ email: 'test@test.com', password: '123456' })
-          .expect(200)
-          .then(res => { 
-            expect(res.body.message).toBe('successful'); 
-          });
-    }); 
-});
+// describe('POST /login', () => {
+//     it('It should login a user',  async () => {
+//         await request
+//           .post('/login')
+//           .send({ email: 'test@test.com', password: '123456' })
+//           .expect(200)
+//           .then(res => { 
+//             expect(res.body.message).toBe('successful'); 
+//           });
+//     }); 
+// });
 
 
 
