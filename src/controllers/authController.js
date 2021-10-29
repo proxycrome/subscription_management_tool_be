@@ -98,7 +98,7 @@ const AuthController = {
         }catch(error){
             res.status(500).json({status: "fail", message: "server err", error});
         }
-    }   
+    },
         
 };
 

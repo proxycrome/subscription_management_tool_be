@@ -4,13 +4,9 @@ import mongoose from 'mongoose';
 const {Schema, model, SchemaTypes} = mongoose;
 
 const subscriptionSchema = new Schema({
-    user: {
+    userId: {
         type: SchemaTypes.ObjectId,
         ref: 'user'
-    },
-    product: {
-        type: SchemaTypes.ObjectId,
-        ref: 'product'
     },
     category: {
         type: SchemaTypes.ObjectId,
@@ -36,3 +32,5 @@ const subscriptionSchema = new Schema({
         default: Date.now
     }
 })
+
+export const Subscription = model('subscription', subscriptionSchema);
