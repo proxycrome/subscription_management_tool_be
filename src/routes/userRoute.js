@@ -3,15 +3,16 @@ import userController from '../controllers/userController.js';
 import subscriptionController from '../controllers/subscriptionController.js';
 import { cloudinaryConfig } from '../config/cloudinaryConfig.js';
 import { multerUploads } from "../config/multerConfig.js";
-
+import AuthValidator from '../middleware/AuthValidator.js';
+import AdminValidator from '../middleware/AdminValidator.js';
 
 const router = Router();
 
-router.route('/edit/:userId').patch(multerUploads.single('image'), cloudinaryConfig, userController.editUser)
-router.route('/products').get(userController.getProducts).post(userController.createProduct)
-router.route('/category').post(userController.createCategory).get(userController.getCategorys)
-router.route('/category/:categoryId/:productId').patch(userController.editCategory)
-router.route('/subscription/:userId').post(subscriptionController.createSubscription).get(subscriptionController.getSubscription)
-router.route('/subscription/:subId').patch(subscriptionController.editSubscription)
+router.route('/edit/:userId').patch(AuthValidator, multerUploads.single('photo'), cloudinaryConfig, userController.editUser)
+router.route('/products').get(AuthValidator, userController.getProducts).post(AdminValidator, userController.createProduct)
+router.route('/category').post(AdminValidator, userController.createCategory).get(AuthValidator, userController.getCategorys)
+router.route('/category/:categoryId/:productId').patch(AdminValidator, userController.editCategory)
+router.route('/subscription').post(AuthValidator, subscriptionController.createSubscription).get(AuthValidator, subscriptionController.getSubscription)
+router.route('/subscription/:subId').patch(AuthValidator, subscriptionController.editSubscription).delete(AuthValidator, subscriptionController.deleteSubscription)
 
 export default router;
