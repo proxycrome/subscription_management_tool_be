@@ -15,10 +15,10 @@ const productSchema = new Schema({
     productLogo: {
         type: String
     }, 
-    categoryId: {
-        type: SchemaTypes.ObjectId,
-        ref: 'category'
-    }
-})
+    // categoryId: {
+    //     type: SchemaTypes.ObjectId,
+    //     ref: 'category'
+    // }
+}, {timestamps: true})
 
 export const Product = model('product', productSchema);

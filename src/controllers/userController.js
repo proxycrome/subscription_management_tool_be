@@ -28,14 +28,14 @@ const userController = {
     },
 
     createProduct: async (req, res) => {
-        const { productName, amount, productLogo, categoryId } = req.body
+        const { productName, amount, productLogo, access } = req.body
 
-        if(!productName || !amount || !categoryId){
-            res.status(400).json({status: 'fail', message: 'Please fill all fields'})
+        if(!access || access !== 'admin') {
+            return res.status(401).json({status: 'fail', message: 'unauthorized'});
         }
 
         try {
-            const newProduct = new Product({productName, amount, productLogo, categoryId});
+            const newProduct = new Product({productName, amount, productLogo});
             const product = await newProduct.save();
 
             if(!product){
@@ -50,7 +50,7 @@ const userController = {
 
     getProducts: async (req, res) => {
         try {
-            const products = await Product.find({}).populate({path: 'categoryId', model: 'category'}).exec()
+            const products = await Product.find({}).exec()
             return res.status(201).json({status: 'success', message: 'successful', data: products})
         } catch (error) {
             return res.status(500).json({status: 'fail', message: 'server error', error})
@@ -58,7 +58,11 @@ const userController = {
     },
 
     createCategory: async (req, res) => {
-        const { categoryName, hasSubCategory, subCategory } = req.body
+        const { categoryName, hasSubCategory, subCategory, access } = req.body;
+
+        if(!access || access !== 'admin') {
+            return res.status(401).json({status: 'fail', message: 'unauthorized'});
+        }
 
         try {
             const newCategory = new Category({categoryName, hasSubCategory, subCategory});
@@ -84,8 +88,13 @@ const userController = {
     },
 
     editCategory: async (req, res) => {
-        const {categoryName, hasSubCategory, subCategory } = req.body
+        const {categoryName, hasSubCategory, subCategory, access } = req.body
         const { categoryId, productId } = req.params;
+
+        if(!access || access !== 'admin') {
+            return res.status(401).json({status: 'fail', message: 'unauthorized'});
+        }
+
         try {
 
             const category = await Category.findByIdAndUpdate(categoryId, {categoryName, hasSubCategory, subCategory, $push: {products: productId}}, {new: true})

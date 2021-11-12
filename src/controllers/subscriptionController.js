@@ -3,8 +3,7 @@ import { Subscription } from "../model/subscriptionModel.js";
 
 const subscriptionController = {
     createSubscription: async (req, res) => {
-        const {category, billingCycle, autoRenew, subscriptionStatus} = req.body;
-        const {userId} = req.params;
+        const {category, billingCycle, autoRenew, subscriptionStatus, userId} = req.body;
 
         try {
             const newSub = new Subscription({userId, category, billingCycle, autoRenew, subscriptionStatus});
@@ -19,7 +18,7 @@ const subscriptionController = {
     },
 
     getSubscription: async (req, res) => {
-        const {userId} = req.params;
+        const {userId} = req.body;
         try {
             const sub = await Subscription.find({userId}).populate({path: 'category', model: 'category'}).exec();
             return res.status(201).json({status: 'success', message: 'successful', data: sub});
@@ -38,6 +37,20 @@ const subscriptionController = {
             return res.status(500).json({status: 'fail', message: 'server error', error});
         }
     },
+    deleteSubscription: async(req, res) => {
+        const { userId } = req.body;
+        const { subId } = req.params;
+        if(!userId) {
+            return res.status(401).json({status: 'fail', message: 'unauthorized'});
+        }
+        
+        try{
+            await Subscription.findByIdAndDelete(subId); 
+            return res.status(201).json({status: 'success', message: 'Subscription deleted successful'});
+        }catch(err){
+            return res.status(500).json({status: 'fail', message: 'server error', err})
+        }
+    }
 }
 
 export default subscriptionController;
