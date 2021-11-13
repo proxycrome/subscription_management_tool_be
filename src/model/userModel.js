@@ -35,7 +35,11 @@ const userSchema = new Schema({
         type: String,
         enum: ["admin", "user"],
         default: "user"
-    } 
+    },
+    userId: {
+        type: Number,
+        default: Math.floor(Math.random() * 100000000)
+    }
 }, {timestamps: true})
 
 export const User = model('user', userSchema); 

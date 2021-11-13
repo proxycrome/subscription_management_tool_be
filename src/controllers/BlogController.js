@@ -21,7 +21,7 @@ const BlogController = {
            });
 
         try {
-            const newBlog = new Blog ({header, body, authorName, date, blog_image: result.secure_url});
+            const newBlog = new Blog ({header, body, authorName, date, blogImage: result.secure_url});
             const blog = await newBlog.save();
 
             if(!blog){

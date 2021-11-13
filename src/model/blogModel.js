@@ -10,7 +10,7 @@ const blogSchema = new Schema ({
     body: {
         type: String
     },
-    blog_image: {
+    blogImage: {
         type: String
     },
     authorName: {

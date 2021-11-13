@@ -3,10 +3,10 @@ import { Subscription } from "../model/subscriptionModel.js";
 
 const subscriptionController = {
     createSubscription: async (req, res) => {
-        const {category, billingCycle, autoRenew, subscriptionStatus, userId} = req.body;
+        const {product, billingCycle, autoRenew, subscriptionStatus, userId} = req.body;
 
         try {
-            const newSub = new Subscription({userId, category, billingCycle, autoRenew, subscriptionStatus});
+            const newSub = new Subscription({userId, product, billingCycle, autoRenew, subscriptionStatus});
             const sub = await newSub.save();
             if(!sub){
                 res.status(400).json({status: 'fail', message: 'something went wrong'});
@@ -38,12 +38,8 @@ const subscriptionController = {
         }
     },
     deleteSubscription: async(req, res) => {
-        const { userId } = req.body;
         const { subId } = req.params;
-        if(!userId) {
-            return res.status(401).json({status: 'fail', message: 'unauthorized'});
-        }
-        
+            
         try{
             await Subscription.findByIdAndDelete(subId); 
             return res.status(201).json({status: 'success', message: 'Subscription deleted successful'});

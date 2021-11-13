@@ -8,9 +8,13 @@ const subscriptionSchema = new Schema({
         type: SchemaTypes.ObjectId,
         ref: 'user'
     },
-    category: {
-        type: SchemaTypes.ObjectId,
-        ref: 'category'
+    product: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: Number,
+        required: true
     },
     billingCycle: {
         type: String,
