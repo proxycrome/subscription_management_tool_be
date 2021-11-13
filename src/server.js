@@ -14,5 +14,9 @@ app.use('/', AuthRouter)
 app.use('/users', userRouter)
 app.use('/blogs', BlogRouter)
 
+app.get('/', (req, res)=>{
+    res.send('hello world');
+})
+
 
 export default app;
