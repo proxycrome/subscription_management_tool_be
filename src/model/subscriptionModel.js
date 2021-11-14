@@ -29,7 +29,8 @@ const subscriptionSchema = new Schema({
     //     required: true
     // },
     subscriptionStatus: {
-        type: String
+        type: String, 
+        default: "inactive"
     },
     dateAdded: {
         type: Date,

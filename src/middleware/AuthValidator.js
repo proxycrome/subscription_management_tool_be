@@ -14,15 +14,17 @@ const AuthValidator = (req, res, next) => {
         
         let token = bearerToken.split(' ')[1];
         
-        jwt.verify(token, process.env.JWT_SECRET, async (err, decode) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
             if(err){
                 return res
                 .status(500)
                 .json({ status: false, message: 'failed to authenicate token.'});
             }
-            const user = await User.findById(decode.id)
-            req.body.userId = user._id;
-            next();
+            User.findById(decode.id, (err, user) => {
+                req.body.userId = user._id;
+                next(); 
+            })
+           
                 
         });
     }catch(err){

@@ -46,7 +46,8 @@ const AuthController = {
                             firstName: savedUser.firstName,
                             lastName: savedUser.lastName,
                             email: savedUser.email,
-                            country: savedUser.country
+                            country: savedUser.country,
+                            userId: savedUser.userId
                         }, message: "successful"});
                     }); 
                 }
@@ -92,7 +93,8 @@ const AuthController = {
                     firstName: isUser.firstName,
                     lastName: isUser.lastName,
                     email: isUser.email,
-                    country: isUser.country
+                    country: isUser.country,
+                    userId: isUser.userId
                 }, message: "successful"});
             });
         }catch(error){

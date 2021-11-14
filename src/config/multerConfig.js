@@ -7,4 +7,4 @@ export const multerUploads = multer({ storage });
 
 const duri = new Datauri();
 
-export const datauri = req => duri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
+export const datauri = req => duri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
