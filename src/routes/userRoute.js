@@ -12,7 +12,7 @@ router.route('/edit/:userId').patch(AuthValidator, multerUploads.single('photo')
 router.route('/products').get(AuthValidator, userController.getProducts).post(AdminValidator, userController.createProduct)
 router.route('/category').post(AdminValidator, userController.createCategory).get(AuthValidator, userController.getCategorys)
 router.route('/category/:categoryId/:productId').patch(AdminValidator, userController.editCategory)
-router.route('/subscription').post(AuthValidator, subscriptionController.createSubscription).get(AuthValidator, subscriptionController.getSubscription)
+router.route('/subscription').post(AuthValidator, subscriptionController.createSubscription).get(AuthValidator, subscriptionController.getSubscriptions)
 router.route('/subscription/:subId').patch(AuthValidator, subscriptionController.editSubscription).delete(AuthValidator, subscriptionController.deleteSubscription)
 
 export default router;

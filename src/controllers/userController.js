@@ -15,7 +15,8 @@ const userController = {
                 responsive: true, 
                 width: "auto", 
                 crop: "scale"
-           });
+           }
+        );
         const {firstName, lastName, email, country, phone} = req.body;
         const {userId} = req.params;
 
