@@ -38,7 +38,11 @@ const userSchema = new Schema({
     },
     userId: {
         type: Number,
-        default: Math.floor(Math.random() * 100000000)
+        default: Math.floor(Math.random() * 1000000) + 20000000
+    },
+    resetLink: {
+        data: String,
+        default: ""
     }
 }, {timestamps: true})
 

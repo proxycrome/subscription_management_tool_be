@@ -24,17 +24,15 @@ const subscriptionSchema = new Schema({
         type: String,
         required: true
     },
-    // autoRenew: {
-    //     type: Boolean,
-    //     required: true
-    // },
     subscriptionStatus: {
         type: String, 
         default: "inactive"
     },
-    dateAdded: {
-        type: Date,
-        default: Date.now
+    dateSubscribed: {
+        type: String
+    },
+    dateExpired: {
+        type: String
     }
 }, {timestamps: true})
 
