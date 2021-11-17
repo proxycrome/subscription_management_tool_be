@@ -8,6 +8,12 @@ const subscriptionSchema = new Schema({
         type: SchemaTypes.ObjectId,
         ref: 'user'
     },
+    category: {
+        type: String,
+    },
+    subCategory: {
+        type: String,
+    },
     product: {
         type: String,
         required: true
