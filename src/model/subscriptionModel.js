@@ -14,6 +14,9 @@ const subscriptionSchema = new Schema({
     subCategory: {
         type: String,
     },
+    productImg: {
+        type: String
+    },
     product: {
         type: String,
         required: true
