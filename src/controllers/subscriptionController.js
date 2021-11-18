@@ -3,10 +3,10 @@ import { Subscription } from "../model/subscriptionModel.js";
 
 const subscriptionController = {
     createSubscription: async (req, res) => {
-        const {category, subCategory, product, amount, billingCycle, autoRenew, subscriptionStatus, userId, dateSubscribed, dateExpired} = req.body;
+        const {category, subCategory, productImg, product, amount, billingCycle, autoRenew, subscriptionStatus, userId, dateSubscribed, dateExpired} = req.body;
 
         try {
-            const newSub = new Subscription({userId, category, subCategory, product, billingCycle, autoRenew, subscriptionStatus, amount, dateSubscribed, dateExpired});
+            const newSub = new Subscription({userId, category, subCategory, productImg, product, billingCycle, autoRenew, subscriptionStatus, amount, dateSubscribed, dateExpired});
             const sub = await newSub.save();
             if(!sub){
                 res.status(400).json({status: 'fail', message: 'something went wrong'});
@@ -28,10 +28,10 @@ const subscriptionController = {
     },
 
     editSubscription: async (req, res) => {
-        const {category, subCategory, product, amount, billingCycle, autoRenew, subscriptionStatus, dateSubscribed, dateExpired} = req.body;
+        const {category, subCategory, productImg, product, amount, billingCycle, autoRenew, subscriptionStatus, dateSubscribed, dateExpired} = req.body;
         const {subId} = req.params;
         try{
-            const sub = await Subscription.findByIdAndUpdate(subId, {category, subCategory, product, amount, billingCycle, autoRenew, subscriptionStatus, dateSubscribed, dateExpired}, {new: true});
+            const sub = await Subscription.findByIdAndUpdate(subId, {category, subCategory, productImg, product, amount, billingCycle, autoRenew, subscriptionStatus, dateSubscribed, dateExpired}, {new: true});
             return res.status(201).json({status: 'success', message: 'successful', data: sub});
         }catch (error) {
             return res.status(500).json({status: 'fail', message: 'server error', error});
