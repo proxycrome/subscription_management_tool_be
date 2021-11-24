@@ -169,7 +169,7 @@ const AuthController = {
                         if(err){
                             return res.status(400).json({status: 'fail', message: 'reset password link error'});
                         }        
-                        return res.status(200).json({message: "Your password has been changed"});
+                        return res.status(200).json({status:"success", message: "Your password has been changed"});
                     });
                 }
             })
