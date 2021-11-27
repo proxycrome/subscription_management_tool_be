@@ -1,37 +1,20 @@
 import { Product } from "../model/productModel.js"
 import { Category } from "../model/categoryModel.js";
 import { User } from "../model/userModel.js";
-import cloudinary from 'cloudinary';
 import dotenv from 'dotenv';
-import { datauri } from "../config/multerConfig.js";
 dotenv.config();
 
-const Cloudinary = cloudinary.v2;
 
 
 
 
 const userController = {
     editUser: async (req, res) => {
-        const file = datauri(req);
-        Cloudinary.config({
-            cloud_name: process.env.CLOUD_NAME,
-            api_key: process.env.CLOUD_IMAGE_API_KEY,
-            api_secret: process.env.CLOUD_IMAGE_API_SECRET
-        });
-        const result = await Cloudinary.uploader.upload(file.content,
-           {
-                dpr: "auto", 
-                responsive: true, 
-                width: "auto", 
-                crop: "scale"
-           }
-        );
-        const {firstName, lastName, email, country, phone} = req.body;
-        const {userId} = req.params
-
         try {
-            const user =  await User.findByIdAndUpdate(userId, {firstName, lastName, email, country, phone, photo: result.secure_url}, {new: true});
+            
+            const {firstName, lastName, email, country, phone, photo} = req.body;
+            const {userId} = req.params;
+            const user =  await User.findByIdAndUpdate(userId, {firstName, lastName, email, country, phone, photo}, {new: true});
             return res.status(201).json({status: 'success', message: 'successful', data: user});
         } catch (error) {
             return res.status(500).json({status: 'fail', message: 'server error', error}); 
