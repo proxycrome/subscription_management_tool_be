@@ -99,7 +99,9 @@ const AuthController = {
                     lastName: isUser.lastName,
                     email: isUser.email,
                     country: isUser.country,
-                    userId: isUser.userId
+                    userId: isUser.userId,
+                    phone: isUser.phone,
+                    photo: isUser.photo
                 }, message: "successful"});
             });
         }catch(error){
