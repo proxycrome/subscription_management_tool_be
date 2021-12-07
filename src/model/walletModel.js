@@ -1,4 +1,4 @@
-import mongoose, { SchemaTypes } from 'mongoose';
+import mongoose from 'mongoose';
 
 
 const {Schema, model, SchemaTypes} = mongoose;
@@ -13,8 +13,8 @@ const walletSchema = new Schema({
         required: true
     },
     walletPin: {
-        type: Number,
-        default: 1234
+        type: String,
+        default: "1234"
     }
 }, {timestamps: true})
 
