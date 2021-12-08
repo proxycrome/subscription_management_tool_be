@@ -1,4 +1,5 @@
 import {Wallet} from '../model/walletModel.js';
+import {WalletFund} from '../model/walletFundModel.js'
 
 
 const fundWalletController = {
@@ -50,6 +51,43 @@ const fundWalletController = {
                 balance: wallet.balance
             }});
         }catch (error) {
+            return res.status(500).json({status: 'fail', message: 'server error', error});
+        }
+    },
+
+    createWalletFund: async (req, res) => {
+        const {userId, amount, paymentGateway, status, date, time} = req.body;
+
+        try {
+            const newWalletFund = new WalletFund({userId, amount, paymentGateway, status, date, time})
+            const walletFund = await newWalletFund.save()
+            if(!walletFund){
+                return res.status(400).json({status: 'fail', message: 'something went wrong'});
+            }
+            return res.status(201).json({status: 'success', message: 'successful', data: walletFund})
+        } catch (error) {
+            return res.status(500).json({status: 'fail', message: 'server error', error})
+        }
+    },
+
+    getWalletFund: async (req, res) => {
+        const{userId} = req.body;
+
+        try {
+            const walletFunds = await WalletFund.find({userId}).lean().exec();
+            return res.status(201).json({status: 'success', message: 'successful', data: walletFunds});
+        } catch (error) {
+            return res.status(500).json({status: 'fail', message: 'server error', error});
+        }
+    },
+
+    deleteWalletFund: async (req, res) => {
+        const {walletId} = req.params;
+        
+        try{
+            await WalletFund.findByIdAndDelete(walletId); 
+            return res.status(201).json({status: 'success', message: 'Subscription deleted successful'});
+        }catch(error){
             return res.status(500).json({status: 'fail', message: 'server error', error});
         }
     }
