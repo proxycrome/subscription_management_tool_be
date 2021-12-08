@@ -39,12 +39,12 @@ const fundWalletController = {
 
     editWallet: async (req, res) => {
         const {userId, balance, walletPin, newWalletPin} = req.body;
-
+        
         try{
             // if(walletPin !== "1234"){
             //     return res.status(400).json({status: "fail", message: "wallet pin is incorrect"})
             // }
-            const wallet = await Wallet.findOneAndUpdate(userId, {balance, walletPin: newWalletPin}, {new: true});
+            const wallet = await Wallet.findOneAndUpdate({userId}, {balance, walletPin: newWalletPin}, {new: true});
             return res.status(201).json({status: 'success', message: 'successful', data: {
                 id: wallet._id,
                 userId: wallet.userId,
