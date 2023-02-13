@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "dev": "nodemon src/index.js",
-    "build": "npm webpack",
+    "build": "npx webpack",
     "start": "node dist/bundle.js"
   },
   "repository": {
@@ -36,11 +36,14 @@
     "multer": "^1.4.3"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.15.8",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
     "jest": "^27.2.5",
     "nodemon": "^2.0.13",
     "supertest": "^6.1.6",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
