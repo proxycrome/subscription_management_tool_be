@@ -1,7 +1,0 @@
-# render.yaml
-
-env: Node.js
-
-build_command: npm run build
-
-run_command: npm start
