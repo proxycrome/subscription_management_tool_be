@@ -8,7 +8,7 @@ import fundWalletController from '../controllers/fundWalletController.js';
 const router = Router();
 
 router.route('/edit/:userId').patch(AuthValidator, userController.editUser)
-router.route('/products').get(AuthValidator, userController.getProducts).post(AdminValidator, userController.createProduct)
+router.route('/products').get(userController.getProducts).post(AdminValidator, userController.createProduct)
 router.route('/category').post(AdminValidator, userController.createCategory).get(AuthValidator, userController.getCategorys)
 router.route('/category/:categoryId/:productId').patch(AdminValidator, userController.editCategory)
 router.route('/subscription').post(AuthValidator, subscriptionController.createSubscription).get(AuthValidator, subscriptionController.getSubscriptions)
