@@ -1,10 +1,13 @@
 import express from 'express';
 import cors from 'cors';
-import AuthRouter from './routes/authRoute.js'
-import UserRouter from './routes/userRoute.js'
-import BlogRouter from './routes/blogRoute.js'
+import AuthRouter from './routes/authRoute.js';
+import UserRouter from './routes/userRoute.js';
+import BlogRouter from './routes/blogRoute.js';
+import databaseConnection from './database/index.js';
 
 const app = express();
+
+databaseConnection.getConnect();
 
 app.use(cors());
 app.use(express.json());
